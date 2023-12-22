@@ -1,4 +1,6 @@
 import { testTime, string } from './utils.js'
+// search for the most common character:
+// We have a string and should count the character that 
 
 // time execution is 3.200ms - 4.200ms O(n^2)
 const myFunction = (string) => {
