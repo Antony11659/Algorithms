@@ -9,20 +9,30 @@
 // Given the sorted rotated array nums of unique elements, return the minimum element of this array.
 // You must write an algorithm that runs in O(log n) time.
 
-// my solution O(log n)
+// my solution O(n)
+// var findMin = function (nums) {
+//   let n = 0;
+//   let i = nums.length - 1;
+//   const left = nums[0];
+//   let right = nums[i];
+//   let min = nums[0];
+//   while (left > right) {
+//     min = right;
+//     i--;
+//     right = nums[i];
+//     n++;
+//   }
+//   console.log("find min for " + n + " " + "steps!");
+//   return min;
+// };
 var findMin = function (nums) {
-  let i = nums.length - 1;
-  const left = nums[0];
-  let right = nums[i];
-  let min = nums[0];
-  while (left > right) {
-    min = right;
-    i--;
-    right = nums[i];
-  }
-  return min;
-};
+  let n = 0;
 
+  console.log("found min for " + n + " " + "steps!");
+  return nums[left];
+};
+const nums = [8, 0, 1, 2, 4, 5, 6, 7];
+console.log(findMin(nums));
 // Example 1:
 // Input: nums = [3,4,5,1,2]
 // Output: 1
