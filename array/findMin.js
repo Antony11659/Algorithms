@@ -25,14 +25,33 @@
 //   console.log("find min for " + n + " " + "steps!");
 //   return min;
 // };
+
+//my solution O(log n)
 var findMin = function (nums) {
   let n = 0;
+  let left = 0;
+  let right = nums.length - 1;
 
+  while (left < right) {
+    let mid = Math.floor((left + right) / 2);
+    if (nums[left] < nums[right]) {
+      n++;
+      console.log("found min for " + n + " " + "steps!");
+      return nums[left];
+    }
+    if (nums[left] <= nums[mid]) {
+      n++;
+      left = mid + 1;
+    }
+    if (nums[mid] < nums[right]) {
+      n++;
+      right = mid;
+    }
+  }
   console.log("found min for " + n + " " + "steps!");
   return nums[left];
 };
-const nums = [8, 0, 1, 2, 4, 5, 6, 7];
-console.log(findMin(nums));
+
 // Example 1:
 // Input: nums = [3,4,5,1,2]
 // Output: 1
