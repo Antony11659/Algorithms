@@ -14,16 +14,7 @@ var search = function (nums, target) {
   let n = 0;
   let left = 0;
   let right = nums.length - 1;
-  if (nums.length === 1) {
-    if (nums[0] === target) {
-      n++;
-      console.log("find for " + n + "steps!");
-      return 0;
-    }
-    n++;
-    console.log("find for " + n + "steps!");
-    return -1;
-  }
+
   while (left <= right) {
     const mid = Math.floor((left + right) / 2);
 
