@@ -3,36 +3,44 @@
 //  and j != k, and nums[i] + nums[j] + nums[k] == 0.
 
 // Notice that the solution set must not contain duplicate triplets.
-const compareArrays = (a, b) => {
-  return a.toString() !== b.toString();
-};
 
 var threeSum = function (nums) {
-  const sortedNums = nums.sort((a, b) => a - b);
+  nums.sort((a, b) => a - b);
   const result = [];
-  for (let i = 0; i < sortedNums.length; i++) {
+  for (let i = 0; i < nums.length - 2; i++) {
+    if (i > 0 && nums[i] === nums[i - 1]) {
+      continue;
+    }
     let left = i + 1;
-    let right = sortedNums.length - 1;
+    let right = nums.length - 1;
+    const target = nums[i] * -1;
     while (left < right) {
-      const sum = sortedNums[i] + sortedNums[left] + sortedNums[right];
-      if (sum === 0) {
-        result.push([sortedNums[i], sortedNums[left], sortedNums[right]]);
-        right--;
+      const sum = nums[left] + nums[right];
+      if (sum === target) {
+        result.push([nums[i], nums[left], nums[right]]);
+        while (left < right && nums[left] === nums[left + 1]) {
+          left++;
+        }
+        while (left < right && nums[right] === nums[right - 1]) {
+          right--;
+        }
         left++;
-      }
-      if (sum > 0) {
         right--;
+        continue;
       }
-      if (sum < 0) {
+      if (sum > target) {
+        right--;
+        continue;
+      }
+      if (sum < target) {
         left++;
+        continue;
       }
     }
   }
-  const uniqResult = [...new Set(result.map((el) => JSON.stringify(el)))];
-  return uniqResult.map((el) => JSON.parse(el));
+  return result;
 };
 
-// console.log([...new Set(nums)]);
 // Example 1:
 // Input: nums = [-1,0,1,2,-1,-4]
 // Output: [[-1,-1,2],[-1,0,1]]
