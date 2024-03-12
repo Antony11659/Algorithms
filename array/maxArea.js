@@ -10,17 +10,18 @@
 // If you simulate the problem, it will be O(n^2) which is not efficient.
 
 var maxArea = function (h) {
+  // my solution O(n)
   let maxAmount = 0;
   let left = 0;
   let right = h.length - 1;
   let x = right;
   while (left < right) {
     if (h[left] < h[right]) {
-      maxAmount = maxAmount > h[left] * x ? maxAmount : h[left] * x;
+      maxAmount = Math.max(maxAmount, h[left] * x);
       left++;
       x--;
     } else {
-      maxAmount = maxAmount > h[right] * x ? maxAmount : h[right] * x;
+      maxAmount = Math.max(maxAmount, h[right] * x);
       right--;
       x--;
     }
